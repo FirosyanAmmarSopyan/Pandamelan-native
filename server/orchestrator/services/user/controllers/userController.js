@@ -5,6 +5,7 @@ class UserController {
     try {
       const { username, email, password, role, phoneNumber, address } =
         req.body;
+        console.log("REQ BODYYYYYYYYYYY", req.body);
       const user = await User.createUser({
         username,
         email,
@@ -28,6 +29,7 @@ class UserController {
       res.status(200).json(finduser);
     } catch (error) {
       console.log(error);
+      res.status(500).json("Internal Server Error");
     }
   }
 
@@ -39,17 +41,21 @@ class UserController {
         res.status(200).json(findByPk)
     } catch (error) {
         console.log(error);
+      res.status(500).json("Internal Server Error");
+
     }
   }
 
   static async deleteOne(req,res){
     try {
         const {id} = req.params
-
+        console.log(id, "<<<<<<<<<<<>>>>>>>>>>>>");
         const deleteOne = await User.deleteById(id)
-        res.status(200).json("Delete User success")
+        res.status(200).json({message : "Delete User success"})
     } catch (error) {
         console.log(error);
+      res.status(500).json("Internal Server Error");
+
     }
   }
 }
