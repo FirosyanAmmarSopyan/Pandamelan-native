@@ -70,6 +70,7 @@ class EntityController {
       const skill = await Skill.bulkCreate(sekil, { transaction: t });
 
       await t.commit();
+      res.status(201).json(job)
     } catch (error) {
       await t.rollback();
       console.log(error);

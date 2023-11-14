@@ -5,7 +5,7 @@ const express = require('express')
 const app = express()
 // const port = 3000
 const cors = require('cors')
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4001;
 const indexRoutes = require('./routes/indexRoutes')
 const jobRoutes = require('./routes/jobRoutes')
 const companyRoutes = require('./routes/companyRoutes');
@@ -20,9 +20,8 @@ app.use(express.json());
 app.use('/' , indexRoutes)
 
 // app.use('/client' , clientRoutes)
-
+app.use('/company' , companyRoutes)
 app.use('/jobs' , jobRoutes)
-
 
 
 app.listen(port, () => {
