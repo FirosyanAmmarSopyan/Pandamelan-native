@@ -4,8 +4,8 @@ services:
     ports:
       - "80:4000"
     environment:
-      - APP_SERVICE_URL=http://app:4001
-      - USER_SERVICE_URL=http://user:4002
+      - APP_SERVICE_URL=http://app:4001/
+      - USER_SERVICE_URL=http://user:4002/user
       - DATABASE_URL=postgresql://postgres:GfbyJJlThJms0BQ0@db.xlmkcghpxpvmnfsucrie.supabase.co:5432/postgres
       - REDIS_URL=redis://default:zt7wz8ROMwcHdYqipE9H5OaLIjfCgZ3R@redis-17119.c292.ap-southeast-1-1.ec2.cloud.redislabs.com:17119
   app:
