@@ -7,7 +7,8 @@ const {typeDefsUser , resolversUser} = require('./schema/userType')
 
 const server = new ApolloServer({
     typeDefs : [typeDefsApp , typeDefsUser],
-    resolvers : [resolversApp , resolversUser]
+    resolvers : [resolversApp , resolversUser],
+    introspection: true
 })
 
 
