@@ -3,8 +3,8 @@ const Redis = require("ioredis");
 const redis = new Redis(
   "redis://default:zt7wz8ROMwcHdYqipE9H5OaLIjfCgZ3R@redis-17119.c292.ap-southeast-1-1.ec2.cloud.redislabs.com:17119"
 );
-const APP_SERVICE_URL = "http://54.206.35.117/";
-const USER_SERVICE_URL = "http://54.206.35.117/";
+const APP_SERVICE_URL = "http://app:4001/";
+const USER_SERVICE_URL = "http://user:4002/";
 
 const typeDefsApp = `#graphql
   type Job {
