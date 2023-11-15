@@ -1,11 +1,6 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "postgres",
-    "database": "Pandamelan",
-    "host": "127.0.0.1",
-    "dialect": "postgres",
-    "port" : "5433"
+    "use_env_variable": "DATABASE_URL"
   },
   "test": {
     "username": "root",
