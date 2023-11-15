@@ -2,7 +2,7 @@ FROM node:18.12.1
 
 WORKDIR /app
 
-ENV PORT=4001
+ENV PORT=4001 NODE_ENV=production
 
 COPY package.json package-lock.json /app/
 

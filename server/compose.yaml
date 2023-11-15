@@ -12,6 +12,8 @@ services:
     build: ./services/app/server
     ports:
       - "4001:4001"
+    environment:
+      - NODE_ENV=production
   user:
     build: ./services/user
     ports:
