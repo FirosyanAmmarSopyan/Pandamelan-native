@@ -9,7 +9,7 @@ import {
 import { NativeBaseProvider } from "native-base";
 
 const client = new ApolloClient({
-  uri: "https://6bec-36-68-222-33.ngrok-free.app/",
+  uri: "https://3baf-103-165-209-194.ngrok-free.app",
   cache: new InMemoryCache(),
 });
 

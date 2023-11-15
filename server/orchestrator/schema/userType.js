@@ -5,15 +5,15 @@ const redis = new Redis(
 );
 const AppUrl = 'http://localhost:4001/'
 const UserUrl = "http://localhost:4002/user/";
-const APP_SERVICE_URL = process.env.APP_SERVICE_URL;
-const USER_SERVICE_URL = process.env.USER_SERVICE_URL;
+// const APP_SERVICE_URL = process.env.APP_SERVICE_URL;
+// const USER_SERVICE_URL = process.env.USER_SERVICE_URL;
 // const APP_SERVICE_URL = "http://54.206.35.117/";
 // const USER_SERVICE_URL = "http://54.206.35.117/";
 // const APP_SERVICE_URL = "http://app:4001/";
 // const USER_SERVICE_URL = "http://user:4002/";
 
-// const APP_SERVICE_URL = 'http://localhost:4001/';
-// const USER_SERVICE_URL =  "http://localhost:4002/user/";
+const APP_SERVICE_URL = 'http://app:4001/';
+const USER_SERVICE_URL =  "http://user:4002/user/";
 
 const typeDefsUser = `#graphql
   type User {

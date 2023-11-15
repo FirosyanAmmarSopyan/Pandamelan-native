@@ -6,8 +6,9 @@ const redis = new Redis(
 // const APP_SERVICE_URL = "http://localhost:4001/";
 // const USER_SERVICE_URL ="http://localhost:4002/";
 
-const APP_SERVICE_URL = "http://app:4001/"
-const USER_SERVICE_URL = "http://user:4002/"
+const APP_SERVICE_URL = 'http://app:4001/';
+const USER_SERVICE_URL =  "http://user:4002/user/";
+
 
 const typeDefsApp = `#graphql
   type Job {

@@ -29,7 +29,7 @@ import LottieView from "lottie-react-native";
 
 export default function Home() {
   const { loading, error, data } = useQuery(GET_JOBS);
-  console.log(data , "<><><><><><><><><><><><>");
+  console.log(error  , data, "<><><><><><><><><><><><>");
 
 
 
