@@ -3,8 +3,10 @@ const Redis = require("ioredis");
 const redis = new Redis(
   "redis://default:zt7wz8ROMwcHdYqipE9H5OaLIjfCgZ3R@redis-17119.c292.ap-southeast-1-1.ec2.cloud.redislabs.com:17119"
 );
-const AppUrl = "http://localhost:4001/";
-const UserUrl= "http://localhost:4002/"
+// const AppUrl = "http://localhost:4001/"
+// const UserUrl= "http://localhost:4002/"
+const APP_SERVICE_URL = process.env.APP_SERVICE_URL;
+const USER_SERVICE_URL = process.env.USER_SERVICE_URL;
 
 const typeDefsApp = `#graphql
   type Job {
@@ -92,7 +94,7 @@ const resolversApp = {
         if (jobCache) {
           return JSON.parse(jobCache);
         } else {
-          const { data } = await axios.get(AppUrl + "jobs");
+          const { data } = await axios.get(APP_SERVICE_URL + "jobs");
           await redis.set("jobs", JSON.stringify(data));
           return data;
         }
@@ -102,9 +104,9 @@ const resolversApp = {
     },
     getJobById: async (_, { id }) => {
       try {
-        const { data } = await axios.get(AppUrl + "jobs/" + id);
+        const { data } = await axios.get(APP_SERVICE_URL + "jobs/" + id);
         console.log(data,"ini DATAAAAAAAAAAAAa");
-        const {data:user} = await axios.get(UserUrl + "user/" + data.authorId)
+        const {data:user} = await axios.get(USER_SERVICE_URL + "user/" + data.authorId)
         data.User = user
         return data;
       } catch (error) {
@@ -118,7 +120,7 @@ const resolversApp = {
       try {
         const { title, description, companyId, authorId, jobType, skills } =
           args;
-        const { data } = await axios.post(AppUrl + "jobs", {
+        const { data } = await axios.post(APP_SERVICE_URL + "jobs", {
           title,
           description,
           companyId,
@@ -137,7 +139,7 @@ const resolversApp = {
         const id = args.id;
         const { title, description, companyId, authorId, jobType, skills } =
           args;
-        const { data } = await axios.put(AppUrl + "jobs/" + id, {
+        const { data } = await axios.put(APP_SERVICE_URL + "jobs/" + id, {
           title,
           description,
           companyId,
@@ -154,7 +156,7 @@ const resolversApp = {
     deleteJob: async (_, args) => {
       try {
         const id = args.id;
-        const { data } = await axios.delete(AppUrl + "jobs/" + id);
+        const { data } = await axios.delete(APP_SERVICE_URL + "jobs/" + id);
         await redis.del("jobs")
         return data;
       } catch (error) {

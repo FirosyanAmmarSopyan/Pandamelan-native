@@ -4,7 +4,9 @@ const redis = new Redis(
   "redis://default:zt7wz8ROMwcHdYqipE9H5OaLIjfCgZ3R@redis-17119.c292.ap-southeast-1-1.ec2.cloud.redislabs.com:17119"
 );
 // const AppUrl = 'http://localhost:4001/'
-const UserUrl = "http://localhost:4002/user/";
+// const UserUrl = "http://localhost:4002/user/";
+const APP_SERVICE_URL = process.env.APP_SERVICE_URL;
+const USER_SERVICE_URL = process.env.USER_SERVICE_URL;
 
 const typeDefsUser = `#graphql
   type User {
@@ -54,7 +56,7 @@ const resolversUser = {
         if (userCache) {
           return JSON.parse(userCache);
         } else {
-          const { data } = await axios.get(UserUrl);
+          const { data } = await axios.get(USER_SERVICE_URL);
           await redis.set("users" , JSON.stringify(data))
           return data;
         }
@@ -64,7 +66,7 @@ const resolversUser = {
     },
     getUserById: async (_, { id }) => {
       try {
-        const { data } = await axios.get(UserUrl + id);
+        const { data } = await axios.get(USER_SERVICE_URL + id);
         return data;
       } catch (error) {
         throw error;
@@ -75,7 +77,7 @@ const resolversUser = {
     handlerAddUser: async (_, args) => {
       try {
         console.log("MASUK ADD USER");
-        const { data } = await axios.post(UserUrl, args);
+        const { data } = await axios.post(USER_SERVICE_URL, args);
        await redis.del("users")
         return data;
       } catch (error) {
@@ -85,7 +87,7 @@ const resolversUser = {
     deleteUser: async (_, { id }) => {
       try {
         console.log(id, "<><><><>");
-        const { data } = await axios.delete(UserUrl + id);
+        const { data } = await axios.delete(USER_SERVICE_URL + id);
         console.log(data);
        await redis.del("users")
 
